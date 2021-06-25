@@ -61,4 +61,4 @@ def handle_exception(e):
 
 if __name__ == "__main__":
     debug = os.environ.get("PORT", 5000) == 5000
-    app.run(debug=debug, port=os.environ.get("PORT", 5000))
+    app.run(debug=debug, port=os.environ.get("PORT", 5000), host="0.0.0.0")
