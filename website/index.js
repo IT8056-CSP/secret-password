@@ -1,4 +1,4 @@
-const host = 'https://secret-password.herokuapp.com/';
+const host = 'https://secret-password.herokuapp.com';
 fetch(`${host}`)
     .then(function (response) {
         if (response.status === 200) console.log('%cConnected to backend!', 'color: green');
