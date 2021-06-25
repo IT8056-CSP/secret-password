@@ -1,3 +1,4 @@
+import os
 from werkzeug.exceptions import HTTPException
 from flask import Flask, request, json
 from flask_cors import CORS
@@ -59,4 +60,5 @@ def handle_exception(e):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    debug = os.environ.get("PORT", 5000) == 5000
+    app.run(debug=debug, port=os.environ.get("PORT", 5000))
