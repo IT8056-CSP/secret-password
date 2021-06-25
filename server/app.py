@@ -25,8 +25,8 @@ def create_session():
 
 @app.route('/game/<session_id>/<int:guess>', methods=['POST'])
 def guess(session_id, guess):
-    if not sessions[session_id]:
-        return "Unknown Session Id!", 400
+    if not session_id in sessions:
+        return {'error': 'Unknown Session Id "{}"!'.format(session_id)}, 400
     secret = sessions[session_id]
     higher = guess < secret
     lower = guess > secret
