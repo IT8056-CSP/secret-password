@@ -1,4 +1,5 @@
-fetch('http://localhost:5000')
+const host = 'https://secret-password.herokuapp.com/';
+fetch('${host}')
     .then(function (response) {
         if (response.status === 200) console.log('%cConnected to backend!', 'color: green');
         return response.json();
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const histories = document.getElementById('histories');
 
     startButton.addEventListener('click', function () {
-        fetch('http://localhost:5000/game', { method: 'POST' })
+        fetch('${host}/game', { method: 'POST' })
             .then(function (response) {
                 return response.json();
             })
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!sessionIdInput.reportValidity() || !guessAttemptInput.reportValidity()) {
             return;
         }
-        fetch(`http://localhost:5000/game/${sessionId}/${guess}`, { method: 'POST' })
+        fetch(`${host}/game/${sessionId}/${guess}`, { method: 'POST' })
             .then(function (response) {
                 return response.json();
             })
