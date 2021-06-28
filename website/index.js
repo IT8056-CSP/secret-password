@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const guess = guessAttemptInput.value;
         const sessionId = sessionIdInput.value;
         if (!sessionIdInput.reportValidity() || !guessAttemptInput.reportValidity()) {
-            return;
+            return this.removeAttribute('disabled');
         }
         fetch(`${host}/game/${sessionId}/${guess}`, { method: 'POST' })
             .then(function (response) {
