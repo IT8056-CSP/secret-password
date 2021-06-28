@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const histories = document.getElementById('histories');
 
     startButton.addEventListener('click', function () {
+        this.setAttribute('disabled', true);
         fetch(`${host}/game`, { method: 'POST' })
             .then(function (response) {
                 return response.json();
@@ -29,10 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 const sessionId = json.session_id;
                 sessionIdInput.value = sessionId;
-            });
+            })
+            .finally(() => this.removeAttribute('disabled'));
     });
 
     guessButton.addEventListener('click', function () {
+        this.setAttribute('disabled', true);
         const guess = guessAttemptInput.value;
         const sessionId = sessionIdInput.value;
         if (!sessionIdInput.reportValidity() || !guessAttemptInput.reportValidity()) {
@@ -58,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 history.classList.add('history');
                 history.innerHTML = result;
                 histories.prepend(history);
-            });
+            })
+            .finally(() => this.removeAttribute('disabled'));
     });
 });
